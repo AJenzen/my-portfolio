@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Wrapper */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.siteHeader {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+
+/* Site title */
+.siteHeader h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.siteHeader h1 a {
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #111;
+  border: 2px solid #111;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Navigation */
+.siteNav {
+  display: flex;
+  gap: 2rem;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #555;
+  font-size: 0.95rem;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: #111;
+  transition: width 0.3s ease;
+}
+
+.navLink:hover {
+  color: #111;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* Aktiv länk */
+.navLinkActive::after {
+  width: 100%;
+}
+
+.navLinkActive {
+  color: #111;
+}
+
+/* Main content */
+main {
+  flex: 1;
+}
+
+/* Footer */
+.siteFooter {
+  margin-top: 4rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #777;
+  border-top: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .siteHeader {
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem 1rem 2rem 1rem;
+  }
+
+  .siteNav {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

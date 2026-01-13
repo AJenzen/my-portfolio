@@ -1,30 +1,29 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import Layout from "../components/layout";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import Layout from "../components/layout";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import * as styles from "../styles/home.module.css";
+import * as styles from "../styles/contact.module.css";
 
-const IndexPage = ({ data }) => {
+const ContactPage = ({ data }) => {
   const page = data.contentfulPage;
+  const image = getImage(page.featuredImage);
 
   return (
     <Layout>
-      <section className={styles.hero}>
-        {page.featuredImage && (
-          <div className={styles.imageWrapper}>
-            <GatsbyImage
-              image={getImage(page.featuredImage)}
-              alt={page.featuredImage.title || page.title}
-            />
-          </div>
-        )}
+      <section className={styles.contactPage}>
+        <h1 className={styles.title}>{page.title}</h1>
 
-        <div className={styles.text}>
-          <h1 className={styles.title}>{page.title}</h1>
-          <div className={styles.description}>
+        <div className={styles.contactContent}>
+          <div className={styles.text}>
             {documentToReactComponents(JSON.parse(page.body.raw))}
           </div>
+
+          {image && (
+            <div className={styles.imageWrapper}>
+              <GatsbyImage image={image} alt={page.featuredImage.title} />
+            </div>
+          )}
         </div>
       </section>
     </Layout>
@@ -32,15 +31,15 @@ const IndexPage = ({ data }) => {
 };
 
 export const query = graphql`
-  query HomePageQuery {
-    contentfulPage(pageType: { eq: "home" }) {
+  query ContactPageQuery {
+    contentfulPage(slug: { eq: "contact" }) {
       title
       body {
         raw
       }
       featuredImage {
         gatsbyImageData(
-          layout: FULL_WIDTH
+          layout: CONSTRAINED
           placeholder: BLURRED
           formats: [AUTO, WEBP]
         )
@@ -54,4 +53,4 @@ export const Head = ({ data }) => (
   <title>{data.contentfulPage.title}</title>
 );
 
-export default IndexPage;
+export default ContactPage;

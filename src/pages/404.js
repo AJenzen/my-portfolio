@@ -1,49 +1,42 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import * as React from "react";
+import { graphql, Link } from "gatsby";
+import Layout from "../components/layout";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import * as styles from "../styles/404.module.css";
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
+const NotFoundPage = ({ data }) => {
+  const page = data.contentfulPage;
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
-  )
-}
+    <Layout>
+      <section className={styles.notFound}>
+        <h1 className={styles.title}>{page.title}</h1>
 
-export default NotFoundPage
+        <div className={styles.text}>
+          {documentToReactComponents(JSON.parse(page.body.raw))}
+        </div>
 
-export const Head = () => <title>Not found</title>
+        <Link to="/" className={styles.button}>
+          Back to Home
+        </Link>
+      </section>
+    </Layout>
+  );
+};
+
+export const query = graphql`
+  query NotFoundPageQuery {
+    contentfulPage(slug: { eq: "404" }) {
+      title
+      body {
+        raw
+      }
+    }
+  }
+`;
+
+export const Head = ({ data }) => (
+  <title>{data.contentfulPage.title}</title>
+);
+
+export default NotFoundPage;
