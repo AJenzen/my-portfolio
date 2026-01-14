@@ -33,6 +33,10 @@
   line-height: 1.6;
 }
 
+blockquote {
+  margin: 1.5rem 0;
+}
+
 .imageWrapper {
   flex: 1 1 300px;
   max-width: 400px;

@@ -26,6 +26,41 @@
   color: #444;
 }
 
+.githubLinkWrapper {
+  margin: 2rem;
+  text-align: center;
+}
+
+.githubLink {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #111;
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.githubLink:hover {
+  background-color: #e4e4e4;
+}
+
+.body a {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #111;
+  margin-top: 1.5rem;
+  margin-right: 1.5rem;
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.body a:hover {
+  background-color: #e4e4e4;
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

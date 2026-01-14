@@ -33,6 +33,19 @@ const PortfolioItemPage = ({ data }) => {
           </div>
         )}
 
+        {item.githubUrl && (
+          <div className={styles.githubLinkWrapper}>
+            <a
+              href={item.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.githubLink}
+            >
+              View on GitHub
+            </a>
+          </div>
+        )}
+
         {galleryImages && galleryImages.length > 0 && (
           <div className={styles.gallery}>
             {galleryImages.map((image, index) => (
@@ -58,6 +71,7 @@ export const query = graphql`
       body {
         raw
       }
+      githubUrl
       featuredImage {
         gatsbyImageData(
           layout: CONSTRAINED
