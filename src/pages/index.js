@@ -51,7 +51,13 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => (
-  <title>{data.contentfulPage.title}</title>
+  <>
+    <title>{data.contentfulPage.title}</title>
+    <meta
+      name="description"
+      content="Frontend developer portfolio built with Gatsby and Contentful"
+    />
+  </>
 );
 
 export default IndexPage;
