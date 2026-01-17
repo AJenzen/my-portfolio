@@ -1,6 +1,7 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
+import Seo from "../components/Seo";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import * as styles from "../styles/portfolio-item.module.css";
@@ -85,7 +86,7 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => (
-  <title>{data.contentfulPortfolioItem.title}</title>
+  <Seo title={data.contentfulPortfolioItem.title} />
 );
 
 export default PortfolioItemPage;

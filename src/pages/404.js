@@ -1,6 +1,7 @@
 import * as React from "react";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/layout";
+import Seo from "../components/Seo";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import * as styles from "../styles/404.module.css";
 
@@ -36,7 +37,7 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => (
-  <title>{data.contentfulPage.title}</title>
+  <Seo title={data.contentfulPage.title} />
 );
 
 export default NotFoundPage;

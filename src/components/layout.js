@@ -8,6 +8,7 @@ import {
   siteNav,
   navLink,
   navLinkActive,
+  footerLinks,
 } from "../styles/layout.module.css";
 
 const Layout = ({ children }) => {
@@ -19,17 +20,25 @@ const Layout = ({ children }) => {
           slug
         }
       }
+      contentfulSiteSettings {
+        siteTitle
+        footerText
+        githubUrl
+        linkedinUrl
+        email
+      }
     }
   `);
 
   const navItems = data.allContentfulNavigationItem.nodes;
+  const settings = data.contentfulSiteSettings || {};
   const location = useLocation();
 
   return (
     <div className={container}>
       <header className={siteHeader}>
         <h1>
-          <Link to="/">The Portfolio</Link>
+          <Link to="/"> The Portfolio </Link>
         </h1>
 
         <nav className={siteNav}>
@@ -55,7 +64,22 @@ const Layout = ({ children }) => {
       <main>{children}</main>
 
       <footer className={siteFooter}>
-        <p>&copy; {new Date().getFullYear()} My Portfolio</p>
+        {settings.footerText && <p>{settings.footerText}</p>}
+
+        <div className={footerLinks}>
+          {settings.githubUrl && (
+            <a href={settings.githubUrl} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          )}
+          {settings.linkedinUrl && (
+            <a href={settings.linkedinUrl} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          )}
+          {settings.email && <a href={`mailto:${settings.email}`}>Email</a>}
+        </div>
+
       </footer>
     </div>
   );

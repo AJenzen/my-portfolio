@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import Layout from "../components/layout";
+import Seo from "../components/Seo";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import * as styles from "../styles/portfolio.module.css";
 
@@ -54,6 +55,6 @@ const PortfolioPage = () => {
   );
 };
 
-export const Head = () => <title>Portfolio</title>;
+export const Head = () => <Seo title="Portfolio" />;
 
 export default PortfolioPage;

@@ -1,8 +1,9 @@
 import * as React from "react";
-import { graphql } from "gatsby";
 import Layout from "../components/layout";
+import Seo from "../components/Seo";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { graphql } from "gatsby";
 import * as styles from "../styles/home.module.css";
 
 const IndexPage = ({ data }) => {
@@ -19,7 +20,6 @@ const IndexPage = ({ data }) => {
             />
           </div>
         )}
-
         <div className={styles.text}>
           <h1 className={styles.title}>{page.title}</h1>
           <div className={styles.description}>
@@ -50,14 +50,8 @@ export const query = graphql`
   }
 `;
 
-export const Head = ({ data }) => (
-  <>
-    <title>{data.contentfulPage.title}</title>
-    <meta
-      name="description"
-      content="Frontend developer portfolio built with Gatsby and Contentful"
-    />
-  </>
-);
+export const Head = ({ data }) => {
+  return <Seo title={data.contentfulPage.title} />;
+};
 
 export default IndexPage;
