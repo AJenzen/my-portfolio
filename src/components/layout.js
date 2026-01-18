@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { useLocation } from "@reach/router";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import {
   container,
   siteHeader,
@@ -29,17 +28,17 @@ const Layout = ({ children }) => {
         email
 
         githubIcon {
-          gatsbyImageData(placeholder: NONE)
+          url
           title
         }
 
         linkedinIcon {
-          gatsbyImageData(placeholder: NONE)
+          url
           title
         }
 
         emailIcon {
-          gatsbyImageData(placeholder: NONE)
+          url
           title
         }
       }
@@ -91,9 +90,12 @@ const Layout = ({ children }) => {
               rel="noopener noreferrer"
               aria-label="GitHub"
             >
-              <GatsbyImage
-                image={getImage(settings.githubIcon)}
+              <img
+                src={settings.githubIcon.url}
                 alt={settings.githubIcon.title || "GitHub"}
+                width="30"
+                height="30"
+                loading="lazy"
               />
             </a>
           )}
@@ -105,18 +107,24 @@ const Layout = ({ children }) => {
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
-              <GatsbyImage
-                image={getImage(settings.linkedinIcon)}
+              <img
+                src={settings.linkedinIcon.url}
                 alt={settings.linkedinIcon.title || "LinkedIn"}
+                width="30"
+                height="30"
+                loading="lazy"
               />
             </a>
           )}
 
           {settings?.email && settings?.emailIcon && (
             <a href={`mailto:${settings.email}`} aria-label="Email">
-              <GatsbyImage
-                image={getImage(settings.emailIcon)}
+              <img
+                src={settings.emailIcon.url}
                 alt={settings.emailIcon.title || "Email"}
+                width="30"
+                height="30"
+                loading="lazy"
               />
             </a>
           )}

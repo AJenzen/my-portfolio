@@ -111,17 +111,18 @@ main {
 .footerLinks {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 .footerLinks a {
-  display: flex;
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
   align-items: center;
   justify-content: center;
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .footerLinks a:hover {
@@ -132,6 +133,7 @@ main {
 .footerLinks img {
   width: 30px;
   height: 30px;
+  display: block;
 }
 
 /* Responsive */
